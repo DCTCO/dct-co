@@ -2709,49 +2709,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </footer>
 
-    <div class="sticky-bar">
-      <a href="javascript:void(0);" onclick="loadAndOpenKakao()" class="kakao_btn">
+     <div class="sticky-bar">
+      <a href="http://pf.kakao.com/_rxaeDn/friend" class="kakao_btn">
         <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
       </a>
     </div>
-
-    
-    <script>
-  let isKakaoInitialized = false;
-
-  function loadAndOpenKakao() {
-    // 1. 이미 SDK가 로드되어 있다면 바로 채팅 실행
-    if (isKakaoInitialized) {
-      executeKakaoaddChannel();
-      return;
-    }
-
-    // 2. 버튼을 처음 눌렀을 때만 SDK를 동적으로 생성해서 삽입
-    const script = document.createElement('script');
-    script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js";
-    script.async = true;
-
-    script.onload = function() {
-      // SDK 파일 로드가 완료되면 초기화 진행
-      if (window.Kakao) {
-        if (!Kakao.isInitialized()) {
-          // ★★★ 여기에 복사한 JavaScript 키를 넣으세요 ★★★
-          Kakao.init('35e09e7dcd0a4b33c26cbee11d4b829a'); 
-        }
-        isKakaoInitialized = true;
-        executeKakaoaddChannel();
-      }
-    };
-
-    document.head.appendChild(script);
-  }
-
-  function executeKakaoaddChannel() {
-    // 실제 카카오톡 앱을 호출하는 함수
-    Kakao.Channel.addChannel({
-      channelPublicId: '_rxaeDn', // 본인의 채널 ID (예: _rxaeDn)
-    });
-  }
-</script>
   </body>
 </html>
