@@ -2710,9 +2710,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
 
      <div class="sticky-bar">
-      <a href="http://pf.kakao.com/_rxaeDn/chat" class="kakao_btn">
-        <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
-      </a>
-    </div>
+  <a href="javascript:void(0);" onclick="goKakao()" class="kakao_btn">
+    <i class="fas fa-comment"></i> 카카오톡 상담 및 무상체험 신청하기
+  </a>
+</div>
+
+<script>
+function goKakao() {
+  const isIOS = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const id = "_rxaeDn";
+  
+  // 아이폰은 채널홈으로, 나머지는 친구추가로 주소만 결정
+  const url = isIOS ? `https://pf.kakao.com/${id}` : `https://pf.kakao.com/${id}/friend`;
+
+  // 군더더기 없이 현재 창에서 이동
+  location.href = url;
+}
+</script>
   </body>
 </html>
