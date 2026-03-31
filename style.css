@@ -284,13 +284,12 @@ body {
 }
 
 .benefit-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 🔥 모바일도 무조건 2칸 */
-  gap: 12px;
-  
+  display: flex;
+  gap: 12px;  
 }
 
 .bn-box {
+  flex: 1;
   background: white;
   color: #0f172a;
   border-radius: 14px;
