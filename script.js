@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
     // 2. Reveal Animations on Scroll (Intersection Observer)
     const revealCallback = (entries, observer) => {
         entries.forEach(entry => {
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
     const revealObserver = new IntersectionObserver(revealCallback, {
         threshold: 0.1
     });
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
 function playVideo(element) {
   element.innerHTML = `
     <iframe 
