@@ -50,3 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function playVideo(element) {
+  element.innerHTML = `
+    <iframe 
+      src="https://www.youtube.com/embed/xUemVdPq_58?autoplay=1&rel=0"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      playsinline>
+    </iframe>
+  `;
+}
