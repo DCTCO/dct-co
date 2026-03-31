@@ -282,3 +282,30 @@ body {
 .video-wrapper img {
   z-index: 1;
 }
+
+.benefit-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 🔥 모바일도 무조건 2칸 */
+  gap: 12px;
+  
+}
+
+.benefit-box {
+  background: white;
+  color: #0f172a;
+  border-radius: 14px;
+  padding: 18px 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.benefit-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.benefit-desc {
+  font-size: 14px;
+  color: #475569;
+}
