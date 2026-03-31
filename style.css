@@ -285,8 +285,7 @@ body {
 
 .benefit-wrap {
   display: flex;
-  gap: 12px;  
-}
+ }
 
 .bn-box {
   flex: 1;
@@ -296,6 +295,10 @@ body {
   padding: 18px 10px;
   text-align: center;
   font-weight: 600;
+}
+
+.bn-box + .bn-box {
+  margin-left: 12px;
 }
 
 .benefit-title {
