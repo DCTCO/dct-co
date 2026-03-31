@@ -201,3 +201,84 @@ body {
 .img-fill {
   object-fit: cover;   /* 꽉 채움 (잘릴 수 있음) */
 }
+
+.video-section {
+  max-width: 800px;
+  margin: 0 auto;
+  }
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 비율 */
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* 썸네일 */
+.video-wrapper img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
+
+/* 재생 버튼 */
+.play-button {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 80%;
+}
+
+.play-button::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 20px;
+  border-style: solid;
+  border-width: 15px 0 15px 25px;
+  border-color: transparent transparent transparent black;
+}
+
+/* iframe */
+.video-wrapper iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+}
+.video-title {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 3;
+}
+.video-wrapper iframe {
+  z-index: 10;
+}
+
+.video-wrapper img {
+  z-index: 1;
+}
+
+.play-button {
+  z-index: 10;
+}
+
+.video-wrapper img {
+  z-index: 1;
+}
