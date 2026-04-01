@@ -202,10 +202,11 @@ body {
   object-fit: cover;   /* 꽉 채움 (잘릴 수 있음) */
 }
 
+
 .video-section {
   max-width: 800px;
-  margin: 0 auto;
-  }
+  margin: 0 auto;   
+}
 
 .video-wrapper {
   position: relative;
@@ -214,7 +215,7 @@ body {
   cursor: pointer;
   overflow: hidden;
   border-radius: 12px;
-}
+  }
 
 /* 썸네일 */
 .video-wrapper img {
@@ -285,7 +286,8 @@ body {
 
 .benefit-wrap {
   display: flex;
- }
+  
+}
 
 .bn-box {
   flex: 1;
@@ -300,6 +302,7 @@ body {
 .bn-box + .bn-box {
   margin-left: 12px;
 }
+
 
 .benefit-title {
   font-size: 16px;
