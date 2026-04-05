@@ -338,6 +338,7 @@ body {
     /* 왼쪽에서 오른쪽으로 흐름 */
     animation: ticker-move 700s linear infinite;
     will-change: transform;
+    -webkit-transform: translate3d(0,0,0); /* 아이폰 그래픽 가속 활성화 */
 }
 
 .ticker-item {
