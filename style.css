@@ -314,3 +314,85 @@ body {
   font-size: 14px;
   color: #475569;
 }
+
+/* 기본 초기화 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+.ticker-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 54px;
+    background-color: #0f172a; /* 딥 네이비 */
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 10000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Pretendard', -apple-system, sans-serif;
+}
+
+.ticker-content {
+    display: flex;
+    white-space: nowrap;
+    /* 왼쪽에서 오른쪽으로 흐름 */
+    animation: ticker-move 700s linear infinite;
+    will-change: transform;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    padding: 0 45px;
+    font-size: 15px;
+}
+
+.shop-name {
+    font-weight: 700;
+    margin-right: 12px;
+    color: #fff;
+}
+
+/* 뱃지 스타일 */
+.status-badge {
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+
+.tag-live {
+    background-color: #22c55e; /* 연한 초록 */
+    color: #fff;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+.tag-done {
+    background-color: #334155;
+    color: #94a3b8;
+}
+
+/* 체험중 왼쪽 흰색 점 (은은한 깜빡임) */
+.live-dot {
+    width: 5px; height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 애니메이션 방향: 좌 -> 우 */
+@keyframes ticker-move {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* 가려짐 방지 */
+body { padding-top: 54px !important; }
