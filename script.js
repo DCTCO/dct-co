@@ -118,3 +118,16 @@ async function initTicker() {
 
 // 페이지 로드 시 즉시 실행
 window.addEventListener('DOMContentLoaded', initTicker);
+
+// 아이폰 사파리 강제 렌더링 트리거
+window.addEventListener('load', () => {
+    const track = document.getElementById('tickerTrack');
+    if (track) {
+        // 0.1초 뒤에 화면을 살짝 흔들어 브라우저가 다시 그리게 만듦
+        setTimeout(() => {
+            track.style.display = 'none';
+            track.offsetHeight; // 강제 리플로우 (핵심)
+            track.style.display = 'flex';
+        }, 100);
+    }
+});
