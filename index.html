@@ -1794,548 +1794,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 40px">
-              <!-- Small/Medium -->
-              <div>
-                <h3
-                  style="
-                    font-size: 18px;
-                    margin-bottom: 20px;
-                    color: var(--neon);
-                  "
-                >
-                  <i class="fas fa-store-alt"></i> 중소형 매장용<br>(하루 배출량 20L ~ 60L)
-                </h3>
-                <div
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    background: #ffffff;
-                    margin-bottom: 20px;
-                    border-radius: 12px;
-                    overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 20px;
-                  "
-                >
-                  <picture
-                    style="
-                      width: 100%;
-                      height: 100%;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                    "
-                  >
-                    <source srcset="images/09.webp" type="image/webp" />
-                    <img
-                      src="images/09.jpg"
-                      alt="중소형 매장용"
-                      style="
-                        max-width: 100%;
-                        max-height: 100%;
-                        object-fit: contain;
-                        display: block;
-                        margin: 0 auto;
-                      "
-                    />
-                  </picture>
+
+              <div id="pricing-selector-final">
+    <div class="pricing-header">
+        <h2>우리 가게 <span> 일 배출량</span> 을 선택하세요</h2>
+        <p>매장 규모에 맞는 용량을 선택하시면<br>정확한 <strong>지원 가격</strong>을 보실 수 있습니다.</p>
+    </div>
+
+    <div class="capacity-grid">
+        <button onclick="updatePrice(15)" id="btn-15" class="cap-btn">20 L 이하</button>
+        <button onclick="updatePrice(20)" id="btn-20" class="cap-btn">20 ~ 40 L</button>
+        <button onclick="updatePrice(25)" id="btn-25" class="cap-btn">40 ~ 60 L</button>
+        <button onclick="updatePrice(30)" id="btn-30" class="cap-btn">60 ~ 100 L</button>
+        <button onclick="updatePrice(40)" id="btn-40" class="cap-btn">100 ~ 150 L</button>
+        <button onclick="updatePrice(50)" id="btn-50" class="cap-btn">150 ~ 200 L</button>
+        <button onclick="updatePrice(60)" id="btn-60" class="cap-btn wide">200 ~ 250 L</button>
+    </div>
+
+    <div id="price-card">
+        <div class="price-inner">
+            <h3 id="target-title">[용량] 상세 조건표</h3>
+            
+            <div id="model-img-wrap">
+                <img id="model-img" src="" alt="제품 이미지">
+            </div>
+
+            <div class="info-container">
+                <div class="info-box">
+                    <span class="label">현금, 카드 구매</span>
+                    <div class="price-group">
+                        <div id="old-buy" class="old-price">0원</div>
+                        <div id="new-buy" class="new-price">0원</div>
+                    </div>
                 </div>
 
-                <!-- 20L Unit -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 700;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    20L 이하
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >2,370,000 원</span
-                      >
+                <div class="info-box column">
+                    <span class="label" style="margin-bottom:12px;">금융할부</span>
+                    <div class="row">
+                        <span class="term">48개월</span>
+                        <div class="price-group">
+                            <span id="old-h48" class="old-price inline">0</span>
+                            <span id="new-h48" class="new-price small">0원</span>
+                        </div>
                     </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 59,800 원 / 48개월 49,000 원</span
-                      >
+                    <div class="row dashed">
+                        <span class="term">36개월</span>
+                        <div class="price-group">
+                            <span id="old-h36" class="old-price inline">0</span>
+                            <span id="new-h36" class="new-price small">0원</span>
+                        </div>
                     </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: #64748b">해당 없음</span>
-                    </div>
-                  </div>
                 </div>
 
-                <!-- 40L Unit -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    20L ~ 40L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >2,770,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 92,000 원 / 48개월 74,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 110,000 원 / 48개월 89,100 원</span
-                      >
-                    </div>
-                  </div>
+                <div id="rental-container" class="info-box column">
+                    <span class="label" style="margin-bottom:12px;">렌탈 서비스</span>
+                    <div id="rental-content"></div>
                 </div>
+            </div>
 
-                <!-- 60L Unit -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    40L ~ 60L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >3,470,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 116,000 원 / 48개월 92,740 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 137,500 원 / 48개월 111,100 원</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="summary-box">
+              <span style="font-size: 14px;">수거비 L당 150원, 25일 기준</span>
+                <p id="save-text" style="font-size: 22px;">월 약 0원 절감 효과!</p>
+                <div class="divider"></div>
+                <p class="summary-sub">금융 할부 48개월 기준</p>
+                <p id="daily-text">0원</p>
+            </div>
 
-              <!-- Large -->
-              <div>
-                <h3
-                  style="
-                    font-size: 18px;
-                    margin-bottom: 20px;
-                    color: var(--neon);
-                  "
-                >
-                  <i class="fas fa-warehouse"></i> 대형 매장용<br>(하루 배출량 60L ~ 250L)
-                </h3>
-                <div
-                  style="
-                    width: 100%;
-                    height: 200px;
-                    background: #ffffff;
-                    margin-bottom: 20px;
-                    border-radius: 12px;
-                    overflow: hidden;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 20px;
-                  "
-                >
-                  <picture
-                    style="
-                      width: 100%;
-                      height: 100%;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                    "
-                  >
-                    <source srcset="images/10.webp" type="image/webp" />
-                    <img
-                      src="images/10.jpg"
-                      alt="대형 매장용"
-                      style="
-                        max-width: 100%;
-                        max-height: 100%;
-                        object-fit: contain;
-                        display: block;
-                        margin: 0 auto;
-                      "
-                    />
-                  </picture>
-                </div>
-
-                <!-- 100L -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    60L ~ 100L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >7,900,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 277,741 원 / 48개월 224,388 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 290,000 원 / 48개월 232,100 원</span
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 150L -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    100L ~ 150L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >11,700,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 399,310 원 / 48개월 319,133 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 429,000 원 / 48개월 344,300 원</span
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 200L -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    150L ~ 200L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >14,400,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 506,261 원 / 48개월 408,100 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 528,000 원 / 48개월 432,500 원</span
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 250L -->
-                <div
-                  style="
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 12px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    overflow: hidden;
-                    text-align: left;
-                  "
-                >
-                  <div
-                    style="
-                      background: rgba(255, 255, 255, 0.1);
-                      padding: 12px 15px;
-                      font-weight: 800;
-                      color: var(--neon);
-                      text-align: center;
-                    "
-                  >
-                    200L ~ 250L
-                  </div>
-                  <div class="fs-14" style="padding: 15px">
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">현금, 카드 구매</span>
-                      <span style="color: white; font-weight: 800"
-                        >17,700,000 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 10px;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">금융할부</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 622,279 원 / 48개월 501,623 원</span
-                      >
-                    </div>
-                    <div
-                      style="
-                        display: flex;
-                        justify-content: space-between;
-                        
-                      "
-                    >
-                      <span style="color: #94a3b8">렌탈</span>
-                      <span style="color: white; font-weight: 700"
-                        >36개월 649,000 원 / 48개월 520,300 원</span
-                      >
-                    </div>
-                  </div>
-                </div>
+            <a href="http://pf.kakao.com/_rxaeDn/friend" class="kakao_price">
+                지금 바로 "0원" 무료체험 신청하기
+            </a>
+        </div>
+    </div>
+</div>                        
+                                                
               </div>
             </div>
           </div>
