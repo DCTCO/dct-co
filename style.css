@@ -119,7 +119,7 @@ h3 { font-size: 18px; font-weight: 700; }
 .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 30px; }
 .process-box { background: white; border: 1px solid var(--slate-200); padding: 15px; border-radius: 12px; text-align: center; }
 .process-box i { font-size: 20px; color: var(--primary); margin-bottom: 10px; display: block; }
-.process-box h4 { font-size: 15px; margin-bottom: 4px; }
+.process-box h4 { font-size: 15px; margin-bottom: 4px; color: black;}
 .process-box p { font-size: 13px; color: var(--slate-400); line-height: 1.3; }
 
 /* Pricing Unit - EQUAL FONT SIZE */
@@ -523,7 +523,7 @@ body { padding-top: 54px !important; }
     color: #3c1e1e;
     padding: 22px;
     border-radius: 15px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
     text-decoration: none;
     text-align: center;
@@ -531,3 +531,4 @@ body { padding-top: 54px !important; }
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
