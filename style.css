@@ -86,8 +86,8 @@
 html,
 body {
   width: 100%;
-  /* max-width: 480px; */
-  margin: 0;
+  max-width: 480px;
+  margin: 0 auto;
   background-color: #eee; /* 배경과 구분 */
 }
 
@@ -103,8 +103,6 @@ body {
 .container {
   padding: 0 20px;
   width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
 section {
