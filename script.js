@@ -331,27 +331,41 @@ function updatePrice(val) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 버튼이 아니라 배지까지 포함된 전체 컨테이너를 선택합니다.
   const stickyBar = document.querySelector(".sticky-bar");
   const priceCard = document.getElementById("price-card");
 
   if (stickyBar && priceCard) {
+    let isPriceCardVisible = false;
+
+    // 1. 가격표 위치 감시
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // 가격표가 보이면 전체를 숨기고, 안 보이면 다시 표시
-          if (entry.isIntersecting) {
-            stickyBar.classList.add("is-hidden");
-          } else {
-            stickyBar.classList.remove("is-hidden");
-          }
+          isPriceCardVisible = entry.isIntersecting;
+          handleStickyBar(); // 상태 바뀔 때마다 실행
         });
       },
-      {
-        threshold: 0.1, // 조금만 겹쳐도 반응하도록 살짝 조정
-        rootMargin: "0px 0px -50px 0px", // 하단 바 높이를 고려해 감지 타이밍 최적화
-      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
     observer.observe(priceCard);
+
+    // 2. 통합 제어 함수
+    const handleStickyBar = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      // 조건: 스크롤이 100px 이상 내려왔고 AND 가격표가 안 보일 때만 노출
+      if (scrollY > 100 && !isPriceCardVisible) {
+        stickyBar.classList.remove("is-hidden");
+      } else {
+        // 그 외 모든 상황(맨 위거나 가격표 겹칠 때)에서는 숨김
+        stickyBar.classList.add("is-hidden");
+      }
+    };
+
+    // 스크롤 시마다 체크
+    window.addEventListener("scroll", handleStickyBar);
+
+    // 초기 로딩 시점에도 한 번 실행 (혹시 모를 상태 동기화)
+    handleStickyBar();
   }
 });

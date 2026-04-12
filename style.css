@@ -86,8 +86,8 @@
 html,
 body {
   width: 100%;
-  max-width: 480px; /* 모바일 전용 고정폭 가독성 */
-  margin: 0 auto;
+  /* max-width: 480px; */
+  margin: 0;
   background-color: #eee; /* 배경과 구분 */
 }
 
@@ -103,6 +103,8 @@ body {
 .container {
   padding: 0 20px;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 section {
@@ -712,20 +714,31 @@ body {
   --old-red: #ff6b6b;
 }
 
-/* 컨테이너 전체에 트랜지션 적용 */
+/* 기본 상태: 사장님 기존 코드와 레이아웃 유지 */
 .sticky-bar {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 20px);
+  left: 50%;
+  transform: translateX(-50%); /* 기본 중앙 정렬 */
+
+  /* 트랜지션 효과 (사장님 기존 설정) */
   transition:
     opacity 0.4s ease,
     visibility 0.4s ease,
     transform 0.4s ease;
+
+  /* 초기 로드 시 숨김 상태로 시작하도록 클래스 추가 대기 */
+  opacity: 1;
+  visibility: visible;
 }
 
-/* 전체가 아래로 쓱 사라지는 효과 */
+/* 사라지는 효과: 사장님 기존 코드 반영 */
 .sticky-bar.is-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none;
-  transform: translate(-50%, 30px); /* 중앙 정렬(50%) 유지하며 아래로 이동 */
+  /* 기존 중앙 정렬(-50%)을 유지하면서 아래로(30px) 이동 */
+  transform: translate(-50%, 30px) !important;
 }
 
 /* 가격표 전체 레이아웃 */
@@ -1009,4 +1022,29 @@ body {
   font-weight: 800;
   border: 1px solid rgba(0, 0, 0, 0.05); /* 미세한 테두리로 구분감 */
   box-shadow: 0 10px 20px rgba(254, 229, 0, 0.4);
+}
+
+/* 초소형 기기(폴드 등) 대응 */
+@media screen and (max-width: 400px) {
+  /* 1. 헤드라인: 챗지피티 말대로 clamp가 정답 */
+  h2 span:last-child {
+    font-size: clamp(24px, 12vw, 50px) !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+
+  /* 2. 3칸짜리 그리드: 좁으면 1칸으로 정렬 */
+  .stats-wrap,
+  .grid-3-col {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* 3. 표(Table): 구기지 말고 옆으로 밀어보게 하기 */
+  .table-container {
+    overflow-x: auto !important;
+  }
+  table {
+    min-width: 380px !important; /* 표 형태 보존 */
+  }
 }
