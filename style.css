@@ -173,18 +173,18 @@ section {
 
 /* Typography */
 h1 {
-  font-size: clamp(calc(28px * 0.75), calc(28 * 0.13vw), 28px);
+  font-size: clamp(calc(28px * 0.85), 5vw, 28px);
   font-weight: 800;
   line-height: 1.3;
   letter-spacing: -1px;
 }
 h2 {
-  font-size: clamp(calc(24px * 0.75), calc(24 * 0.13vw), 24px);
+  font-size: clamp(calc(24px * 0.85), 5vw, 24px);
   font-weight: 800;
   line-height: 1.3;
 }
 h3 {
-  font-size: clamp(calc(18px * 0.75), calc(18 * 0.13vw), 18px);
+  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
   font-weight: 700;
 }
 
@@ -195,7 +195,7 @@ h3 {
   background: #dbeafe;
   color: #2563eb;
   border-radius: 4px;
-  font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px);
+  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
   font-weight: 700;
   margin-bottom: 15px;
 }
@@ -210,7 +210,7 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-/* .img-box::after { content: 'IMAGE'; color: var(--slate-200); font-weight: 900; font-size: clamp(calc(13px * 0.75), calc(13 * 0.13vw), 13px); } */
+/* .img-box::after { content: 'IMAGE'; color: var(--slate-200); font-weight: 900; font-size: clamp(calc(13px * 0.85), 5vw, 13px); } */
 
 /* Stats */
 .stats-wrap {
@@ -223,12 +223,12 @@ h3 {
 }
 .stat-num {
   display: block;
-  font-size: clamp(calc(18px * 0.75), calc(18 * 0.13vw), 18px);
+  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
   font-weight: 800;
   color: var(--navy);
 }
 .stat-label {
-  font-size: clamp(calc(13px * 0.75), calc(13 * 0.13vw), 13px);
+  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
   color: var(--slate-400);
   font-weight: 600;
 }
@@ -245,7 +245,7 @@ h3 {
   padding: 20px;
 }
 .roi-tag {
-  font-size: clamp(calc(12px * 0.75), calc(12 * 0.13vw), 12px);
+  font-size: clamp(calc(12px * 0.85), 5vw, 12px);
   font-weight: 800;
   padding: 3px 8px;
   border-radius: 4px;
@@ -253,13 +253,13 @@ h3 {
   margin-bottom: 10px;
 }
 .roi-val {
-  font-size: clamp(calc(24px * 0.75), calc(24 * 0.13vw), 24px);
+  font-size: clamp(calc(24px * 0.85), 5vw, 24px);
   font-weight: 800;
 }
 .roi-list {
   list-style: none;
   margin-top: 10px;
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
   color: var(--slate-600);
 }
 .roi-list li {
@@ -304,18 +304,18 @@ h3 {
   text-align: center;
 }
 .process-box i {
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
   color: var(--primary);
   margin-bottom: 10px;
   display: block;
 }
 .process-box h4 {
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
   margin-bottom: 4px;
   color: black;
 }
 .process-box p {
-  font-size: clamp(calc(13px * 0.75), calc(13 * 0.13vw), 13px);
+  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
   color: var(--slate-400);
   line-height: 1.3;
 }
@@ -338,24 +338,24 @@ h3 {
 }
 .p-cap {
   font-weight: 800;
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
 }
 .p-buy {
   font-weight: 800;
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
   color: var(--primary);
 }
 .p-old {
   text-decoration: line-through;
   color: var(--slate-200);
-  font-size: clamp(calc(12px * 0.75), calc(12 * 0.13vw), 12px);
+  font-size: clamp(calc(12px * 0.85), 5vw, 12px);
   margin-right: 5px;
   font-weight: 400;
 }
 .price-row {
   display: flex;
   justify-content: space-between;
-  font-size: clamp(calc(13px * 0.75), calc(13 * 0.13vw), 13px);
+  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
   margin-bottom: 5px;
 }
 .price-row .l {
@@ -417,7 +417,7 @@ body {
   width: 100%;
   padding: 18px;
   border-radius: 12px;
-  font-size: clamp(calc(17px * 0.75), calc(17 * 0.13vw), 17px);
+  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
   font-weight: 800;
   text-decoration: none;
   display: flex;
@@ -447,7 +447,7 @@ body {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 .faq-q {
-  font-size: clamp(calc(17px * 0.75), calc(17 * 0.13vw), 17px);
+  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
   font-weight: 800;
   color: var(--navy);
   display: flex;
@@ -457,11 +457,11 @@ body {
 }
 .faq-q-icon {
   color: var(--primary);
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
   font-weight: 900;
 }
 .faq-a {
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
   color: var(--slate-600);
   line-height: 1.7;
   display: flex;
@@ -472,7 +472,7 @@ body {
 }
 .faq-a-icon {
   color: var(--slate-400);
-  font-size: clamp(calc(18px * 0.75), calc(18 * 0.13vw), 18px);
+  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
   font-weight: 800;
 }
 .faq-a strong {
@@ -565,7 +565,7 @@ body {
   top: 20px;
   left: 15px;
   color: white;
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
   font-weight: bold;
   z-index: 3;
 }
@@ -604,13 +604,13 @@ body {
 }
 
 .benefit-title {
-  font-size: clamp(calc(16px * 0.75), calc(16 * 0.13vw), 16px);
+  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
   font-weight: 800;
   margin-bottom: 6px;
 }
 
 .benefit-desc {
-  font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px);
+  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
   color: #475569;
 }
 
@@ -652,7 +652,7 @@ body {
   display: flex;
   align-items: center;
   padding: 0 45px;
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
 }
 
 .shop-name {
@@ -665,7 +665,7 @@ body {
 .status-badge {
   padding: 3px 12px;
   border-radius: 50px;
-  font-size: clamp(calc(11px * 0.75), calc(11 * 0.13vw), 11px);
+  font-size: clamp(calc(11px * 0.85), 5vw, 11px);
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -768,7 +768,7 @@ body {
   margin-bottom: 30px;
 }
 .pricing-header h2 {
-  font-size: clamp(calc(26px * 0.75), calc(26 * 0.13vw), 26px);
+  font-size: clamp(calc(26px * 0.85), 5vw, 26px);
   font-weight: 800;
   margin-bottom: 12px;
 }
@@ -792,7 +792,7 @@ body {
   border-radius: 12px;
   font-weight: 800;
   cursor: pointer;
-  font-size: clamp(calc(16px * 0.75), calc(16 * 0.13vw), 16px);
+  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
   transition: 0.2s;
 }
 
@@ -820,7 +820,7 @@ body {
 }
 #target-title {
   text-align: center;
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
   color: var(--neon);
   margin-bottom: 25px;
   font-weight: 800;
@@ -866,12 +866,12 @@ body {
 .label {
   color: #94a3b8;
   font-weight: 700;
-  font-size: clamp(calc(15px * 0.75), calc(15 * 0.13vw), 15px);
+  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
 }
 .old-price {
   color: var(--old-red);
   text-decoration: line-through;
-  font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px);
+  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
   font-weight: 600;
 }
 .old-price.inline {
@@ -879,11 +879,11 @@ body {
 }
 .new-price {
   color: white;
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
   font-weight: 600;
 }
 .new-price.small {
-  font-size: clamp(calc(20px * 0.75), calc(20 * 0.13vw), 20px);
+  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
 }
 
 .row {
@@ -899,7 +899,7 @@ body {
 }
 .term {
   color: #cbd5e1;
-  font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px);
+  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
 }
 
 /* 강조 박스 */
@@ -919,7 +919,7 @@ body {
 #save-text {
   color: var(--accent-blue);
   font-weight: 600;
-  font-size: clamp(calc(17px * 0.75), calc(17 * 0.13vw), 17px);
+  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
   margin: 0;
 }
 .divider {
@@ -930,12 +930,12 @@ body {
 }
 .summary-sub {
   color: white;
-  font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px);
+  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
   margin: 0;
 }
 #daily-text {
   color: var(--neon);
-  font-size: clamp(calc(30px * 0.75), calc(30 * 0.13vw), 30px);
+  font-size: clamp(calc(30px * 0.85), 5vw, 30px);
   font-weight: 600;
   margin: 5px 0 0;
 }
@@ -947,7 +947,7 @@ body {
   color: #3c1e1e;
   padding: 22px;
   border-radius: 15px;
-  font-size: clamp(calc(16px * 0.75), calc(16 * 0.13vw), 16px);
+  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
   font-weight: 800;
   text-decoration: none;
   text-align: center;
@@ -983,7 +983,7 @@ body {
   margin-bottom: -10px;
   background: #111; /* 배경을 더 어둡게 해서 초록색 대비 강화 */
   color: #fff;
-  font-size: clamp(calc(11px * 0.75), calc(11 * 0.13vw), 11px);
+  font-size: clamp(calc(11px * 0.85), 5vw, 11px);
   font-weight: 800;
   padding: 4px 10px;
   border-radius: 6px;
@@ -1031,7 +1031,7 @@ body {
   color: #191919;
   text-decoration: none;
   border-radius: 14px;
-  font-size: clamp(calc(16px * 0.75), calc(16 * 0.13vw), 16px);
+  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
   font-weight: 800;
   border: 1px solid rgba(0, 0, 0, 0.05); /* 미세한 테두리로 구분감 */
   box-shadow: 0 10px 20px rgba(254, 229, 0, 0.4);

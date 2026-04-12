@@ -318,7 +318,7 @@ function updatePrice(val) {
             <div class="row dashed"><span class="term">36개월</span><div class="price-group"><span class="old-price inline">${d.rental.r36o}</span><span class="new-price small">${d.rental.r36n} 원</span></div></div>
         `;
   } else {
-    rCont.innerHTML = `<p style="text-align:center; color:#64748b; font-size: clamp(calc(14px * 0.75), calc(14 * 0.13vw), 14px); margin:10px 0;">해당 모델 렌탈 서비스 없음</p>`;
+    rCont.innerHTML = `<p style="text-align:center; color:#64748b; font-size: clamp(calc(14px * 0.85), 5vw, 14px); margin:10px 0;">해당 모델 렌탈 서비스 없음</p>`;
   }
 
   document.getElementById("save-text").innerText = `월 ~${d.save} 원 절감`;
