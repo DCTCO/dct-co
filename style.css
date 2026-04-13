@@ -923,7 +923,7 @@ body {
 }
 
 /* 모바일 전용 미세 조정 */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
   #ace-net-profit {
     font-size: 20px !important; /* 숫자가 크면 글자 크기를 강제 축소 */
   }
