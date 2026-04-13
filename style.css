@@ -917,21 +917,6 @@ body {
   box-sizing: border-box !important;
 }
 
-/* 모든 자식 요소에도 box-sizing 적용 */
-.summary-box * {
-  box-sizing: border-box !important;
-}
-
-/* 모바일 전용 미세 조정 */
-@media screen and (max-width: 420px) {
-  #ace-net-profit {
-    font-size: 20px !important; /* 숫자가 크면 글자 크기를 강제 축소 */
-  }
-  .summary-box div {
-    font-size: 13px; /* 전체적인 글자 크기 조정 */
-  }
-}
-
 #save-text {
   color: var(--accent-blue);
   font-weight: 600;
