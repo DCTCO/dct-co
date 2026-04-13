@@ -902,18 +902,33 @@ body {
   font-size: clamp(calc(14px * 0.85), 5vw, 14px);
 }
 
-/* 강조 박스 */
 .summary-box {
-  margin-top: 30px;
-  padding: 25px;
-  background: linear-gradient(
-    180deg,
-    rgba(56, 189, 248, 0.1) 0%,
-    rgba(56, 189, 248, 0.05) 100%
-  );
-  border-radius: 20px;
-  text-align: center;
-  border: 1px solid var(--neon);
+  margin: 30px auto;
+  /* 고정 px 대신 %를 사용하여 부모 너비에 맞춤 */
+  width: 92% !important;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid var(--neon, #3182f6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  /* 박스 사이즈 계산 방식 고정 */
+  box-sizing: border-box !important;
+}
+
+/* 모든 자식 요소에도 box-sizing 적용 */
+.summary-box * {
+  box-sizing: border-box !important;
+}
+
+/* 모바일 전용 미세 조정 */
+@media screen and (max-width: 375px) {
+  #ace-net-profit {
+    font-size: 20px !important; /* 숫자가 크면 글자 크기를 강제 축소 */
+  }
+  .summary-box div {
+    font-size: 13px; /* 전체적인 글자 크기 조정 */
+  }
 }
 
 #save-text {
@@ -940,18 +955,20 @@ body {
   margin: 5px 0 0;
 }
 
-/* 버튼 스타일 */
+/* 기존 노란색 디자인을 폐기하고 파란색 임팩트 스타일로 대체 */
 .kakao_price {
   display: block;
-  background: #fee500;
-  color: #3c1e1e;
-  padding: 22px;
-  border-radius: 15px;
-  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
-  font-weight: 800;
+  background: #3182f6; /* 신뢰감을 주는 블루 */
+  color: #ffffff !important; /* 글자는 흰색 */
+  padding: 20px; /* 사장님 기존 22px보다 살짝 줄여서 더 단단해 보이게 조정 */
+  border-radius: 12px; /* 둥근 세련된 느낌 */
+  font-size: clamp(14px, 5vw, 16px); /* 모바일에서도 잘 보이게 폰트 크기 유지 */
+  font-weight: 600;
   text-decoration: none;
   text-align: center;
   margin-top: 25px;
+  box-shadow: 0 4px 15px rgba(49, 130, 246, 0.25); /* 블루 톤 그림자 */
+  transition: all 0.2s ease;
 }
 
 @keyframes fadeIn {

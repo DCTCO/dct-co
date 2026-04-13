@@ -132,8 +132,19 @@ window.addEventListener("load", () => {
   }
 });
 
+// 1. 리포트 계산용 데이터: 용량(val)별로 기존 수거 비용과 월 납입금을 직접 수정하세요.
+const reportConfigs = {
+  15: { oldCost: 75000, monthlyPay: 49000 },
+  20: { oldCost: 150000, monthlyPay: 74000 },
+  25: { oldCost: 225000, monthlyPay: 92740 },
+  30: { oldCost: 375000, monthlyPay: 223388 },
+  40: { oldCost: 562500, monthlyPay: 319133 },
+  50: { oldCost: 750000, monthlyPay: 408100 },
+  60: { oldCost: 937500, monthlyPay: 501623 },
+};
+
+// 2. 상세 조건표용 전체 데이터 세트
 const pricingData = {
-  // img: "images/파일명" (확장자 제외)
   15: {
     title: "20 L 이하",
     img: "images/09",
@@ -257,33 +268,49 @@ const pricingData = {
   },
 };
 
+// 3. 메인 업데이트 함수
 function updatePrice(val) {
   const d = pricingData[val];
+  const rc = reportConfigs[val];
   const card = document.getElementById("price-card");
   const wrap = document.getElementById("pricing-selector-final");
 
-  // 넓이 확장 (다른 섹션과 동일하게)
   wrap.style.maxWidth = "100%";
   card.style.maxWidth = "100%";
 
-  // 버튼 활성화 스타일
   document
     .querySelectorAll(".cap-btn")
     .forEach((b) => b.classList.remove("active"));
   document.getElementById("btn-" + val).classList.add("active");
 
-  // 표 노출 및 타이틀 주입
   card.style.display = "block";
   document.getElementById("target-title").innerText =
     `[ ${d.title} ] 상세 조건표`;
 
-  // 이미지 섹션 (사장님 요청 디자인 적용: 200px 높이 제한 및 중앙 정렬)
+  // AI 리포트 영역 자동 계산 및 주입
+  const reportTitle = document.getElementById("ace-display-title");
+  if (reportTitle) {
+    reportTitle.innerText = `${d.title} 한 달 사용시`;
+
+    const netProfit = rc.oldCost - rc.monthlyPay;
+    const yearlyProfit = netProfit * 12;
+
+    document.getElementById("ace-old-cost").innerText =
+      rc.oldCost.toLocaleString() + " 원";
+    document.getElementById("ace-machine-cost").innerText =
+      rc.monthlyPay.toLocaleString() + " 원";
+    document.getElementById("ace-net-profit").innerText =
+      netProfit.toLocaleString() + " 원";
+    document.getElementById("ace-yearly-profit").innerText =
+      yearlyProfit.toLocaleString();
+  }
+
+  // 이미지 섹션
   const imgWrap = document.getElementById("model-img-wrap");
   if (d.img) {
-    // 부모 박스 스타일 강제 지정
     imgWrap.style.width = "100%";
-    imgWrap.style.height = "200px"; // 높이 고정
-    imgWrap.style.background = "#ffffff"; // 흰색 배경
+    imgWrap.style.height = "200px";
+    imgWrap.style.background = "#ffffff";
     imgWrap.style.marginBottom = "20px";
     imgWrap.style.borderRadius = "12px";
     imgWrap.style.overflow = "hidden";
@@ -303,7 +330,7 @@ function updatePrice(val) {
     imgWrap.style.display = "none";
   }
 
-  // 데이터 주입 (기존 디자인 유지)
+  // 데이터 주입
   document.getElementById("old-buy").innerText = d.oldB + " 원";
   document.getElementById("new-buy").innerText = d.newB + " 원";
   document.getElementById("old-h48").innerText = d.h48o;
@@ -324,12 +351,12 @@ function updatePrice(val) {
   document.getElementById("save-text").innerText = `월 ~${d.save} 원 절감`;
   document.getElementById("daily-text").innerText = `하루 ${d.daily} 원`;
 
-  // 스크롤
   const targetPosition =
     card.getBoundingClientRect().top + window.pageYOffset - 100;
   window.scrollTo({ top: targetPosition, behavior: "smooth" });
 }
 
+// 4. 스크롤 및 스티키바 제어
 document.addEventListener("DOMContentLoaded", () => {
   const stickyBar = document.querySelector(".sticky-bar");
   const priceCard = document.getElementById("price-card");
@@ -337,35 +364,27 @@ document.addEventListener("DOMContentLoaded", () => {
   if (stickyBar && priceCard) {
     let isPriceCardVisible = false;
 
-    // 1. 가격표 위치 감시
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           isPriceCardVisible = entry.isIntersecting;
-          handleStickyBar(); // 상태 바뀔 때마다 실행
+          handleStickyBar();
         });
       },
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
     );
     observer.observe(priceCard);
 
-    // 2. 통합 제어 함수
     const handleStickyBar = () => {
       const scrollY = window.scrollY || window.pageYOffset;
-
-      // 조건: 스크롤이 100px 이상 내려왔고 AND 가격표가 안 보일 때만 노출
       if (scrollY > 100 && !isPriceCardVisible) {
         stickyBar.classList.remove("is-hidden");
       } else {
-        // 그 외 모든 상황(맨 위거나 가격표 겹칠 때)에서는 숨김
         stickyBar.classList.add("is-hidden");
       }
     };
 
-    // 스크롤 시마다 체크
     window.addEventListener("scroll", handleStickyBar);
-
-    // 초기 로딩 시점에도 한 번 실행 (혹시 모를 상태 동기화)
     handleStickyBar();
   }
 });
