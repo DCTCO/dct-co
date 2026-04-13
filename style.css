@@ -816,7 +816,8 @@ body {
 }
 
 .price-inner {
-  padding: 30px 20px;
+  padding: 0px 20px;
+  padding-top: 30px;
 }
 #target-title {
   text-align: center;
@@ -905,7 +906,7 @@ body {
 .summary-box {
   margin: 30px auto;
   /* 고정 px 대신 %를 사용하여 부모 너비에 맞춤 */
-  width: 92% !important;
+  width: 100% !important;
   max-width: 420px;
   background: #ffffff;
   border-radius: 12px;
