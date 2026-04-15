@@ -955,6 +955,7 @@ body {
   margin-top: 25px;
   box-shadow: 0 4px 15px rgba(49, 130, 246, 0.25); /* 블루 톤 그림자 */
   transition: all 0.2s ease;
+  margin-bottom: 20px;
 }
 
 @keyframes fadeIn {

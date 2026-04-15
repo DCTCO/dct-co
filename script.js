@@ -147,7 +147,7 @@ const reportConfigs = {
 const pricingData = {
   15: {
     title: "20 L 이하",
-    img: "images/09",
+    // img: "images/09",
     oldB: "2,870,000",
     newB: "2,370,000",
     h48o: "75,000",
@@ -160,7 +160,7 @@ const pricingData = {
   },
   20: {
     title: "20 ~ 40 L",
-    img: "images/09",
+    // img: "images/09",
     oldB: "3,452,000",
     newB: "2,770,000",
     h48o: "106,000",
@@ -178,7 +178,7 @@ const pricingData = {
   },
   25: {
     title: "40 ~ 60 L",
-    img: "images/09",
+    // img: "images/09",
     oldB: "4,390,000",
     newB: "3,470,000",
     h48o: "128,740",
@@ -196,7 +196,7 @@ const pricingData = {
   },
   30: {
     title: "60 ~ 100 L",
-    img: "images/10",
+    // img: "images/10",
     oldB: "9,300,000",
     newB: "7,900,000",
     h48o: "273,388",
@@ -214,7 +214,7 @@ const pricingData = {
   },
   40: {
     title: "100 ~ 150 L",
-    img: "images/10",
+    // img: "images/10",
     oldB: "13,600,000",
     newB: "11,700,000",
     h48o: "378,000",
@@ -232,7 +232,7 @@ const pricingData = {
   },
   50: {
     title: "150 ~ 200 L",
-    img: "images/10",
+    // img: "images/10",
     oldB: "16,800,000",
     newB: "14,400,000",
     h48o: "486,100",
@@ -250,7 +250,7 @@ const pricingData = {
   },
   60: {
     title: "200 ~ 250 L",
-    img: "images/10",
+    // img: "images/10",
     oldB: "20,650,000",
     newB: "17,700,000",
     h48o: "587,623",
@@ -285,7 +285,7 @@ function updatePrice(val) {
 
   card.style.display = "block";
   document.getElementById("target-title").innerText =
-    `[ ${d.title} ] 상세 조건표`;
+    `[ ${d.title} ] 가격 할인 지원가`;
 
   // AI 리포트 영역 자동 계산 및 주입
   const reportTitle = document.getElementById("ace-display-title");

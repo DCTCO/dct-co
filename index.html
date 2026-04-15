@@ -1167,8 +1167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     z-index: -1;
                     opacity: 0.8;
                   "
-                ></span>사장님은
-               넣고 누르기만
+                ></span>사장님은 넣고 누르기만
               </span>
               하세요.
             </p>
@@ -1288,7 +1287,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             >
               <span style="font-size: clamp(calc(24px * 0.85), 5vw, 24px);">🧐</span>
               <p style="font-size: clamp(calc(16px * 0.85), 5vw, 16px); color: white">
-               중고로 살수도 없고..<br /><span
+              중고로 살수도 없고..<br /><span
                   ><span class="neon-text">고장나면 A/S는 믿을만한가?</span></span
                 >
               </p>
@@ -1568,11 +1567,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </p>
                         <p>매장 규모에 맞는 용량을 선택하시면<br>정확한 <strong>지원 가격</strong>을 보실 수 있습니다.</p>
                     </div>
-
+                    
                     <div class="capacity-grid">
                         <button onclick="updatePrice(15)" id="btn-15" class="cap-btn">20 L 이하</button>
                         <button onclick="updatePrice(20)" id="btn-20" class="cap-btn">20 ~ 40 L</button>
-                        <button onclick="updatePrice(25)" id="btn-25" class="cap-btn">40 ~ 60 L</button>
+                        <button onclick="updatePrice(25)" id="btn-25" class="cap-btn">40 ~ 60 L</button>                      
                         <button onclick="updatePrice(30)" id="btn-30" class="cap-btn">60 ~ 100 L</button>
                         <button onclick="updatePrice(40)" id="btn-40" class="cap-btn">100 ~ 150 L</button>
                         <button onclick="updatePrice(50)" id="btn-50" class="cap-btn">150 ~ 200 L</button>
@@ -1587,45 +1586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <img id="model-img" src="" alt="제품 이미지">
                             </div>
 
-                            <div class="info-container">
-                                <div class="info-box">
-                                    <span class="label">현금, 카드 구매</span>
-                                    <div class="price-group">
-                                        <div id="old-buy" class="old-price">0원</div>
-                                        <div id="new-buy" class="new-price">0원</div>
-                                    </div>
-                                </div>
-
-                                <div class="info-box column">
-                                    <span class="label" style="margin-bottom:12px;">금융할부</span>
-                                    <div class="row">
-                                        <span class="term">48개월</span>
-                                        <div class="price-group">
-                                            <span id="old-h48" class="old-price inline">0</span>
-                                            <span id="new-h48" class="new-price small">0원</span>
-                                        </div>
-                                    </div>
-                                    <div class="row dashed">
-                                        <span class="term">36개월</span>
-                                        <div class="price-group">
-                                            <span id="old-h36" class="old-price inline">0</span>
-                                            <span id="new-h36" class="new-price small">0원</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="rental-container" class="info-box column">
-                                    <span class="label" style="margin-bottom:12px;">렌탈 서비스</span>
-                                    <div id="rental-content"></div>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            <div id="ace-report-card" class="summary-box">
+<div id="ace-report-card" class="summary-box">
     <div style="padding: 24px 5%; color: #191f28; font-family: 'Pretendard', sans-serif; line-height: 1.2; box-sizing: border-box; width: 100%;">
         
         <div style="border-bottom: 2px solid #f2f4f6; padding-bottom: 12px; margin-bottom: 15px; text-align: left;">
@@ -1666,17 +1627,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div style="text-align: center;">
-            <p style="font-size: 11px; color: #8b95a1; margin-bottom: 20px; line-height: 1.5;">
+            <p style="font-size: 11px; color: #8b95a1; margin-bottom: 0px; line-height: 1.5;">
                 본 데이터는 전국 표준 배출가 기준이며,<br>
                 <span style="color: #4e5968; font-weight: 600;">지역에 따라 수익은 더 늘어날 수 있습니다.</span>
             </p>
             
-            <a href="http://pf.kakao.com/_rxaeDn/chat" id="ace-cta-btn" class="kakao_price">
-                우리 가게 무료체험 바로 신청하기
-            </a>
+            
         </div>
     </div>
 </div>
+                            <div class="info-container">
+                                <div class="info-box">
+                                    <span class="label">현금, 카드 구매</span>
+                                    <div class="price-group">
+                                        <div id="old-buy" class="old-price">0원</div>
+                                        <div id="new-buy" class="new-price">0원</div>
+                                    </div>
+                                </div>
+
+                                <div class="info-box column">
+                                    <span class="label" style="margin-bottom:12px;">금융할부</span>
+                                    <div class="row">
+                                        <span class="term">48개월</span>
+                                        <div class="price-group">
+                                            <span id="old-h48" class="old-price inline">0</span>
+                                            <span id="new-h48" class="new-price small">0원</span>
+                                        </div>
+                                    </div>
+                                    <div class="row dashed">
+                                        <span class="term">36개월</span>
+                                        <div class="price-group">
+                                            <span id="old-h36" class="old-price inline">0</span>
+                                            <span id="new-h36" class="new-price small">0원</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="rental-container" class="info-box column">
+                                    <span class="label" style="margin-bottom:12px;">렌탈 서비스</span>
+                                    <div id="rental-content"></div>
+                                </div>
+                            </div>
+                            
+                            <a href="http://pf.kakao.com/_rxaeDn/friend" id="ace-cta-btn" class="kakao_price">
+                우리 가게 무료체험 바로 신청하기
+            </a>
+                            
+                            
+                            
+                            
+                            
                             
                         </div>
                     </div>
@@ -2172,7 +2172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="remain-badge">
       <span class="live-dot"></span> 이번주 무료체험 잔여 8대
       </div>
-    <a href="http://pf.kakao.com/_rxaeDn/chat" class="kakao_btn">
+    <a href="http://pf.kakao.com/_rxaeDn/friend" class="kakao_btn">
     <i class="fas fa-comment"></i> 카카오톡 간편 예약 바로하기
     </a>
   </div>
