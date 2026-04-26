@@ -68,18 +68,22 @@ const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPW77xjNlESQRQPDnYRQZn6oQr1Al5RVpVoc51W2-P-f9ThJNNM6OUbr5UGOvP6uTnzDRZ28YKxhOd/pub?gid=0&single=true&output=csv";
 
 async function initTicker() {
+  const container = document.querySelector(".ticker-content");
+  if (!container) return;
+
+  if (window.location.protocol === "file:") {
+    container.innerHTML = '<div class="ticker-item">실시간 현황은 브라우저 배포 환경에서 자동 연결됩니다.</div>';
+    return;
+  }
+
   try {
-    const response = await fetch(GOOGLE_SHEET_URL);
+    const response = await fetch(GOOGLE_SHEET_URL, { mode: "cors", redirect: "follow" });
     if (!response.ok) throw new Error("Network response was not ok");
 
     const csvData = await response.text();
 
     // 윈도우/맥 줄바꿈 차이 해결 (\r\n 또는 \n)
     const rows = csvData.split(/\r?\n/).filter((row) => row.trim() !== "");
-    const container = document.querySelector(".ticker-content");
-
-    if (!container) return;
-
     const fragment = document.createDocumentFragment();
 
     rows.forEach((row) => {
@@ -117,7 +121,7 @@ async function initTicker() {
 }
 
 // 페이지 로드 시 즉시 실행
-window.addEventListener("DOMContentLoaded", initTicker);
+document.addEventListener("DOMContentLoaded", initTicker);
 
 // 아이폰 사파리 강제 렌더링 트리거
 window.addEventListener("load", () => {
@@ -348,16 +352,49 @@ function updatePrice(val) {
     rCont.innerHTML = `<p style="text-align:center; color:#64748b; font-size: clamp(calc(14px * 0.85), 5vw, 14px); margin:10px 0;">해당 모델 렌탈 서비스 없음</p>`;
   }
 
-  document.getElementById("save-text").innerText = `월 ~${d.save} 원 절감`;
-  document.getElementById("daily-text").innerText = `하루 ${d.daily} 원`;
+  const saveText = document.getElementById("save-text");
+  const dailyText = document.getElementById("daily-text");
 
-  const targetPosition =
-    card.getBoundingClientRect().top + window.pageYOffset - 100;
-  window.scrollTo({ top: targetPosition, behavior: "smooth" });
+  if (saveText) {
+    saveText.innerText = `월 ~${d.save} 원 절감`;
+  }
+
+  if (dailyText) {
+    dailyText.innerText = `하루 ${d.daily} 원`;
+  }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const targetPosition =
+        card.getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    });
+  });
+}
+
+window.updatePrice = updatePrice;
+
+function initPricing() {
+  const buttons = document.querySelectorAll(".cap-btn");
+
+  if (!buttons.length) {
+    return;
+  }
+
+  buttons.forEach((button) => {
+    const capacity = button.dataset.capacity || button.id.replace("btn-", "").trim();
+
+    button.removeAttribute("onclick");
+    button.addEventListener("click", () => {
+      updatePrice(capacity);
+    });
+  });
 }
 
 // 4. 스크롤 및 스티키바 제어
 document.addEventListener("DOMContentLoaded", () => {
+  initPricing();
+
   const stickyBar = document.querySelector(".sticky-bar");
   const priceCard = document.getElementById("price-card");
 
