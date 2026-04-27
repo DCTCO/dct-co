@@ -1,4 +1,7 @@
 :root {
+  --page-max-width: 480px;
+  --page-padding: 20px;
+  --section-space: 56px;
   --navy: #0f172a;
   --primary: #2563eb;
   --slate-50: #f8fafc;
@@ -17,6 +20,29 @@
   --text-md: 20px;
   --text-lg: 28px;
   --text-xl: 34px;
+
+  /* Unified Mobile Typography */
+  --fs-10: 10px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-25: 25px;
+  --fs-26: 26px;
+  --fs-28: 28px;
+  --fs-30: 30px;
+  --fs-32: 32px;
+  --fs-34: 34px;
+  --fs-35: 35px;
+  --fs-40: 40px;
+  --fs-50: 46px;
 
   /* Font Weight */
   --fw-thin: 200;
@@ -83,30 +109,37 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html,
-body {
+html {
   width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
   background-color: #eee; /* 배경과 구분 */
 }
 
 body {
+  width: min(100%, var(--page-max-width));
+  min-height: 100vh;
+  margin: 0 auto;
   font-family: "Pretendard", sans-serif;
   color: var(--navy);
   line-height: 1.6;
   background-color: var(--white);
   overflow-x: hidden;
   word-break: keep-all;
+  text-wrap: pretty;
 }
 
 .container {
-  padding: 0 20px;
+  width: 100%;
+  min-width: 0;
+  padding: 0 var(--page-padding);
+}
+
+main {
   width: 100%;
 }
 
 section {
-  padding: 60px 0;
+  width: 100%;
+  padding: var(--section-space) 0;
 }
 .bg-navy {
   background-color: var(--navy);
@@ -158,8 +191,7 @@ section {
 
 /* 가격표 하단 안내 문구 전용 */
 .pricing-sub-title {
-  /* 26px이 최대, 화면 좁아지면 20px까지 자동 축소 */
-  font-size: clamp(20px, 6vw, 26px) !important;
+  font-size: var(--fs-24) !important;
   font-weight: 800 !important;
   line-height: 1.4;
 }
@@ -173,18 +205,18 @@ section {
 
 /* Typography */
 h1 {
-  font-size: clamp(calc(28px * 0.85), 5vw, 28px);
+  font-size: var(--fs-28);
   font-weight: 800;
   line-height: 1.3;
   letter-spacing: -1px;
 }
 h2 {
-  font-size: clamp(calc(24px * 0.85), 5vw, 24px);
+  font-size: var(--fs-24);
   font-weight: 800;
   line-height: 1.3;
 }
 h3 {
-  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
+  font-size: var(--fs-18);
   font-weight: 700;
 }
 
@@ -195,7 +227,7 @@ h3 {
   background: #dbeafe;
   color: #2563eb;
   border-radius: 4px;
-  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
+  font-size: var(--fs-14);
   font-weight: 700;
   margin-bottom: 15px;
 }
@@ -210,7 +242,7 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-/* .img-box::after { content: 'IMAGE'; color: var(--slate-200); font-weight: 900; font-size: clamp(calc(13px * 0.85), 5vw, 13px); } */
+/* .img-box::after { content: 'IMAGE'; color: var(--slate-200); font-weight: 900; font-size: var(--fs-13); } */
 
 /* Stats */
 .stats-wrap {
@@ -223,12 +255,12 @@ h3 {
 }
 .stat-num {
   display: block;
-  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
+  font-size: var(--fs-18);
   font-weight: 800;
   color: var(--navy);
 }
 .stat-label {
-  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
+  font-size: var(--fs-13);
   color: var(--slate-400);
   font-weight: 600;
 }
@@ -245,7 +277,7 @@ h3 {
   padding: 20px;
 }
 .roi-tag {
-  font-size: clamp(calc(12px * 0.85), 5vw, 12px);
+  font-size: var(--fs-12);
   font-weight: 800;
   padding: 3px 8px;
   border-radius: 4px;
@@ -253,13 +285,13 @@ h3 {
   margin-bottom: 10px;
 }
 .roi-val {
-  font-size: clamp(calc(24px * 0.85), 5vw, 24px);
+  font-size: var(--fs-24);
   font-weight: 800;
 }
 .roi-list {
   list-style: none;
   margin-top: 10px;
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
   color: var(--slate-600);
 }
 .roi-list li {
@@ -295,27 +327,44 @@ h3 {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
   margin-top: 30px;
+  width: 100%;
+  align-items: stretch;
 }
 .process-box {
   background: white;
   border: 1px solid var(--slate-200);
-  padding: 15px;
+  min-width: 0;
+  min-height: 128px;
+  padding: 14px 12px;
   border-radius: 12px;
   text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.process-box > span:first-child {
+  position: static !important;
+  align-self: flex-start;
+  margin-bottom: 8px;
+  font-size: var(--fs-11) !important;
+  line-height: 1.2;
 }
 .process-box i {
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
   color: var(--primary);
   margin-bottom: 10px;
   display: block;
 }
 .process-box h4 {
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
   margin-bottom: 4px;
   color: black;
 }
 .process-box p {
-  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
+  font-size: var(--fs-13);
   color: var(--slate-400);
   line-height: 1.3;
 }
@@ -338,24 +387,24 @@ h3 {
 }
 .p-cap {
   font-weight: 800;
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
 }
 .p-buy {
   font-weight: 800;
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
   color: var(--primary);
 }
 .p-old {
   text-decoration: line-through;
   color: var(--slate-200);
-  font-size: clamp(calc(12px * 0.85), 5vw, 12px);
+  font-size: var(--fs-12);
   margin-right: 5px;
   font-weight: 400;
 }
 .price-row {
   display: flex;
   justify-content: space-between;
-  font-size: clamp(calc(13px * 0.85), 5vw, 13px);
+  font-size: var(--fs-13);
   margin-bottom: 5px;
 }
 .price-row .l {
@@ -381,9 +430,7 @@ header {
   align-items: center;
   border-bottom: 1px solid var(--slate-200);
   background: white;
-
-  width: 100%;
-  max-width: 480px;
+  width: min(100%, var(--page-max-width));
   margin: 0 auto;
 }
 
@@ -398,7 +445,7 @@ header {
   max-width: 480px;
   padding: 12px 20px; /* 기본 패딩 */
   padding-bottom: calc(
-    12px + env(safe-area-inset-bottom, 0px)
+  12px + env(safe-area-inset-bottom, 0px)
   ); /* 세이프 에어리어 대응 */
   /* background: rgba(255, 255, 255, 0.98);  */
   /* backdrop-filter: blur(10px);  */
@@ -417,7 +464,7 @@ body {
   width: 100%;
   padding: 18px;
   border-radius: 12px;
-  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
+  font-size: var(--fs-17);
   font-weight: 800;
   text-decoration: none;
   display: flex;
@@ -447,7 +494,7 @@ body {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 .faq-q {
-  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
+  font-size: var(--fs-17);
   font-weight: 800;
   color: var(--navy);
   display: flex;
@@ -457,11 +504,11 @@ body {
 }
 .faq-q-icon {
   color: var(--primary);
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
   font-weight: 900;
 }
 .faq-a {
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
   color: var(--slate-600);
   line-height: 1.7;
   display: flex;
@@ -472,7 +519,7 @@ body {
 }
 .faq-a-icon {
   color: var(--slate-400);
-  font-size: clamp(calc(18px * 0.85), 5vw, 18px);
+  font-size: var(--fs-18);
   font-weight: 800;
 }
 .faq-a strong {
@@ -492,6 +539,14 @@ body {
 
 .point-right {
   text-align: right;
+}
+
+img,
+picture,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
 }
 
 .img-box picture,
@@ -565,7 +620,7 @@ body {
   top: 20px;
   left: 15px;
   color: white;
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
   font-weight: bold;
   z-index: 3;
 }
@@ -604,13 +659,13 @@ body {
 }
 
 .benefit-title {
-  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
+  font-size: var(--fs-16);
   font-weight: 800;
   margin-bottom: 6px;
 }
 
 .benefit-desc {
-  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
+  font-size: var(--fs-14);
   color: #475569;
 }
 
@@ -624,8 +679,9 @@ body {
 .ticker-wrapper {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, var(--page-max-width));
   height: 54px;
   background-color: #0f172a; /* 딥 네이비 */
   color: #fff;
@@ -635,9 +691,9 @@ body {
   z-index: 10000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-family:
-    "Pretendard",
-    -apple-system,
-    sans-serif;
+  "Pretendard",
+  -apple-system,
+  sans-serif;
 }
 
 .ticker-content {
@@ -652,7 +708,7 @@ body {
   display: flex;
   align-items: center;
   padding: 0 45px;
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
 }
 
 .shop-name {
@@ -665,7 +721,7 @@ body {
 .status-badge {
   padding: 3px 12px;
   border-radius: 50px;
-  font-size: clamp(calc(11px * 0.85), 5vw, 11px);
+  font-size: var(--fs-11);
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -736,9 +792,9 @@ body {
 
   /* 트랜지션 효과 (사장님 기존 설정) */
   transition:
-    opacity 0.4s ease,
-    visibility 0.4s ease,
-    transform 0.4s ease;
+  opacity 0.4s ease,
+  visibility 0.4s ease,
+  transform 0.4s ease;
 
   /* 초기 로드 시 숨김 상태로 시작하도록 클래스 추가 대기 */
   opacity: 1;
@@ -768,7 +824,7 @@ body {
   margin-bottom: 30px;
 }
 .pricing-header h2 {
-  font-size: clamp(calc(26px * 0.85), 5vw, 26px);
+  font-size: var(--fs-26);
   font-weight: 800;
   margin-bottom: 12px;
 }
@@ -792,7 +848,7 @@ body {
   border-radius: 12px;
   font-weight: 800;
   cursor: pointer;
-  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
+  font-size: var(--fs-16);
   transition: 0.2s;
 }
 
@@ -821,7 +877,7 @@ body {
 }
 #target-title {
   text-align: center;
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
   color: var(--neon);
   margin-bottom: 25px;
   font-weight: 800;
@@ -867,12 +923,12 @@ body {
 .label {
   color: #94a3b8;
   font-weight: 700;
-  font-size: clamp(calc(15px * 0.85), 5vw, 15px);
+  font-size: var(--fs-15);
 }
 .old-price {
   color: var(--old-red);
   text-decoration: line-through;
-  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
+  font-size: var(--fs-14);
   font-weight: 600;
 }
 .old-price.inline {
@@ -880,11 +936,11 @@ body {
 }
 .new-price {
   color: white;
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
   font-weight: 600;
 }
 .new-price.small {
-  font-size: clamp(calc(20px * 0.85), 5vw, 20px);
+  font-size: var(--fs-20);
 }
 
 .row {
@@ -900,7 +956,7 @@ body {
 }
 .term {
   color: #cbd5e1;
-  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
+  font-size: var(--fs-14);
 }
 
 .summary-box {
@@ -920,7 +976,7 @@ body {
 #save-text {
   color: var(--accent-blue);
   font-weight: 600;
-  font-size: clamp(calc(17px * 0.85), 5vw, 17px);
+  font-size: var(--fs-17);
   margin: 0;
 }
 .divider {
@@ -931,12 +987,12 @@ body {
 }
 .summary-sub {
   color: white;
-  font-size: clamp(calc(14px * 0.85), 5vw, 14px);
+  font-size: var(--fs-14);
   margin: 0;
 }
 #daily-text {
   color: var(--neon);
-  font-size: clamp(calc(30px * 0.85), 5vw, 30px);
+  font-size: var(--fs-30);
   font-weight: 600;
   margin: 5px 0 0;
 }
@@ -948,7 +1004,7 @@ body {
   color: #ffffff !important; /* 글자는 흰색 */
   padding: 20px; /* 사장님 기존 22px보다 살짝 줄여서 더 단단해 보이게 조정 */
   border-radius: 12px; /* 둥근 세련된 느낌 */
-  font-size: clamp(14px, 5vw, 16px); /* 모바일에서도 잘 보이게 폰트 크기 유지 */
+  font-size: var(--fs-15);
   font-weight: 600;
   text-decoration: none;
   text-align: center;
@@ -987,7 +1043,7 @@ body {
   margin-bottom: -10px;
   background: #111; /* 배경을 더 어둡게 해서 초록색 대비 강화 */
   color: #fff;
-  font-size: clamp(calc(11px * 0.85), 5vw, 11px);
+  font-size: var(--fs-11);
   font-weight: 800;
   padding: 4px 10px;
   border-radius: 6px;
@@ -1035,19 +1091,41 @@ body {
   color: #191919;
   text-decoration: none;
   border-radius: 14px;
-  font-size: clamp(calc(16px * 0.85), 5vw, 16px);
+  font-size: var(--fs-16);
   font-weight: 800;
   border: 1px solid rgba(0, 0, 0, 0.05); /* 미세한 테두리로 구분감 */
   box-shadow: 0 10px 20px rgba(254, 229, 0, 0.4);
 }
 
 /* 초소형 기기(폴드 등) 대응 */
-@media screen and (max-width: 400px) {
-  /* 1. 헤드라인: 챗지피티 말대로 clamp가 정답 */
-  h2 span:last-child {
-    font-size: clamp(24px, 12vw, 50px) !important;
+@media screen and (max-width: 430px) {
+  .hero-shell h2 span:last-child {
+    font-size: var(--fs-40) !important;
     white-space: nowrap !important;
     display: inline-block !important;
+  }
+
+  .process-grid {
+    gap: 10px;
+  }
+
+  .process-box {
+    min-height: 120px;
+    padding: 12px 10px;
+  }
+
+  .process-box i {
+    font-size: var(--fs-18);
+    margin-bottom: 8px;
+  }
+
+  .process-box h4 {
+    font-size: var(--fs-14);
+    line-height: 1.25;
+  }
+
+  .process-box p {
+    font-size: var(--fs-12);
   }
 
   /* 2. 3칸짜리 그리드: 좁으면 1칸으로 정렬 */
@@ -1063,5 +1141,59 @@ body {
   }
   table {
     min-width: 380px !important; /* 표 형태 보존 */
+  }
+}
+
+@media screen and (max-width: 390px) {
+  :root {
+    --page-padding: 18px;
+    --section-space: 52px;
+    --fs-20: 19px;
+    --fs-22: 21px;
+    --fs-24: 22px;
+    --fs-25: 23px;
+    --fs-26: 24px;
+    --fs-28: 26px;
+    --fs-30: 28px;
+    --fs-32: 29px;
+    --fs-34: 31px;
+    --fs-35: 32px;
+    --fs-40: 35px;
+    --fs-50: 42px;
+  }
+
+  .ticker-item {
+    padding: 0 32px;
+  }
+
+  .faq-item {
+    padding: 22px 18px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  :root {
+    --page-padding: 16px;
+    --section-space: 48px;
+    --fs-16: 15px;
+    --fs-17: 16px;
+    --fs-18: 17px;
+    --fs-20: 18px;
+    --fs-22: 20px;
+    --fs-24: 21px;
+    --fs-25: 22px;
+    --fs-26: 23px;
+    --fs-28: 24px;
+    --fs-30: 26px;
+    --fs-32: 27px;
+    --fs-34: 29px;
+    --fs-35: 30px;
+    --fs-40: 32px;
+    --fs-50: 38px;
+  }
+
+  .benefit-wrap,
+  .point-split {
+    gap: 10px;
   }
 }

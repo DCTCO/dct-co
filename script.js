@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function playVideo(element) {
   element.innerHTML = `
-    <iframe 
+    <iframe
       src="https://www.youtube.com/embed/xUemVdPq_58?autoplay=1&rel=0"
       allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
       allowfullscreen
@@ -77,7 +77,10 @@ async function initTicker() {
   }
 
   try {
-    const response = await fetch(GOOGLE_SHEET_URL, { mode: "cors", redirect: "follow" });
+    const response = await fetch(GOOGLE_SHEET_URL, {
+      mode: "cors",
+      redirect: "follow",
+    });
     if (!response.ok) throw new Error("Network response was not ok");
 
     const csvData = await response.text();
@@ -326,7 +329,7 @@ function updatePrice(val) {
     imgWrap.innerHTML = `
             <picture style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
                 <source srcset="${d.img}.webp" type="image/webp">
-                <img src="${d.img}.jpg" alt="제품 이미지" 
+                <img src="${d.img}.jpg" alt="제품 이미지"
                     style="max-width:100%; max-height:100%; object-fit:contain; display:block; margin:0 auto;">
             </picture>
         `;
