@@ -1,145 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Smooth Scroll for Anchor Links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        const headerHeight = 60; // Fixed header height
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-
-  // 2. Reveal Animations on Scroll (Intersection Observer)
-  const revealCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.classList.add("animate-up");
-        observer.unobserve(entry.target);
-      }
-    });
-  };
-
-  const revealObserver = new IntersectionObserver(revealCallback, {
-    threshold: 0.1,
-  });
-
-  document.querySelectorAll(".animate-up").forEach((el) => {
-    el.style.opacity = "0"; // Initial state
-    revealObserver.observe(el);
-  });
-
-  // 3. Header background change on scroll (Optional, for better UX)
-  const header = document.querySelector("header");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
-    } else {
-      header.style.boxShadow = "none";
-    }
-  });
-});
-
-function playVideo(element) {
-  element.innerHTML = `
-    <iframe
-      src="https://www.youtube.com/embed/xUemVdPq_58?autoplay=1&rel=0"
-      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-      allowfullscreen
-      playsinline>
-    </iframe>
-  `;
-}
-
-// 구글 시트 CSV URL (게시 후 생성된 주소)
+const HEADER_HEIGHT = 60;
+const YOUTUBE_EMBED_BASE_URL = "https://www.youtube.com/embed/";
 const GOOGLE_SHEET_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQPW77xjNlESQRQPDnYRQZn6oQr1Al5RVpVoc51W2-P-f9ThJNNM6OUbr5UGOvP6uTnzDRZ28YKxhOd/pub?gid=0&single=true&output=csv";
 
-async function initTicker() {
-  const container = document.querySelector(".ticker-content");
-  if (!container) return;
-
-  if (window.location.protocol === "file:") {
-    container.innerHTML = '<div class="ticker-item">실시간 현황은 브라우저 배포 환경에서 자동 연결됩니다.</div>';
-    return;
-  }
-
-  try {
-    const response = await fetch(GOOGLE_SHEET_URL, {
-      mode: "cors",
-      redirect: "follow",
-    });
-    if (!response.ok) throw new Error("Network response was not ok");
-
-    const csvData = await response.text();
-
-    // 윈도우/맥 줄바꿈 차이 해결 (\r\n 또는 \n)
-    const rows = csvData.split(/\r?\n/).filter((row) => row.trim() !== "");
-    const fragment = document.createDocumentFragment();
-
-    rows.forEach((row) => {
-      // 콤마로 분리
-      const cols = row.split(",").map((c) => c.trim());
-      if (cols.length < 3) return;
-
-      const [name, status, text] = cols;
-      const itemDiv = document.createElement("div");
-      itemDiv.className = "ticker-item";
-
-      const isLive = status.toLowerCase() === "live";
-      const badgeClass = isLive ? "tag-live" : "tag-done";
-
-      // live일 때만 흰색 점(live-dot) 추가
-      const dot = isLive ? '<span class="live-dot"></span>' : "";
-
-      itemDiv.innerHTML = `
-                <span class="shop-name">${name}</span>
-                <span class="status-badge ${badgeClass}">${dot}${text}</span>
-            `;
-      fragment.appendChild(itemDiv);
-    });
-
-    // 비우고 새로 채우기 (무한 루프 위해 2개 복사)
-    container.innerHTML = "";
-    container.appendChild(fragment.cloneNode(true));
-    container.appendChild(fragment);
-  } catch (error) {
-    console.error("데이터 로드 실패:", error);
-    // 에러 시 임시 문구 표시
-    document.querySelector(".ticker-content").innerHTML =
-      '<div class="ticker-item">실시간 현황 업데이트 중...</div>';
-  }
-}
-
-// 페이지 로드 시 즉시 실행
-document.addEventListener("DOMContentLoaded", initTicker);
-
-// 아이폰 사파리 강제 렌더링 트리거
-window.addEventListener("load", () => {
-  const track = document.getElementById("tickerTrack");
-  if (track) {
-    // 0.1초 뒤에 화면을 살짝 흔들어 브라우저가 다시 그리게 만듦
-    setTimeout(() => {
-      track.style.display = "none";
-      track.offsetHeight; // 강제 리플로우 (핵심)
-      track.style.display = "flex";
-    }, 100);
-  }
-});
-
-// 1. 리포트 계산용 데이터: 용량(val)별로 기존 수거 비용과 월 납입금을 직접 수정하세요.
 const reportConfigs = {
   15: { oldCost: 75000, monthlyPay: 49000 },
   20: { oldCost: 150000, monthlyPay: 74000 },
@@ -150,11 +13,9 @@ const reportConfigs = {
   60: { oldCost: 937500, monthlyPay: 501623 },
 };
 
-// 2. 상세 조건표용 전체 데이터 세트
 const pricingData = {
   15: {
     title: "20 L 이하",
-    // img: "images/09",
     oldB: "2,870,000",
     newB: "2,370,000",
     h48o: "75,000",
@@ -167,7 +28,6 @@ const pricingData = {
   },
   20: {
     title: "20 ~ 40 L",
-    // img: "images/09",
     oldB: "3,452,000",
     newB: "2,770,000",
     h48o: "106,000",
@@ -185,7 +45,6 @@ const pricingData = {
   },
   25: {
     title: "40 ~ 60 L",
-    // img: "images/09",
     oldB: "4,390,000",
     newB: "3,470,000",
     h48o: "128,740",
@@ -203,7 +62,6 @@ const pricingData = {
   },
   30: {
     title: "60 ~ 100 L",
-    // img: "images/10",
     oldB: "9,300,000",
     newB: "7,900,000",
     h48o: "273,388",
@@ -221,7 +79,6 @@ const pricingData = {
   },
   40: {
     title: "100 ~ 150 L",
-    // img: "images/10",
     oldB: "13,600,000",
     newB: "11,700,000",
     h48o: "378,000",
@@ -239,7 +96,6 @@ const pricingData = {
   },
   50: {
     title: "150 ~ 200 L",
-    // img: "images/10",
     oldB: "16,800,000",
     newB: "14,400,000",
     h48o: "486,100",
@@ -257,7 +113,6 @@ const pricingData = {
   },
   60: {
     title: "200 ~ 250 L",
-    // img: "images/10",
     oldB: "20,650,000",
     newB: "17,700,000",
     h48o: "587,623",
@@ -275,97 +130,225 @@ const pricingData = {
   },
 };
 
-// 3. 메인 업데이트 함수
-function updatePrice(val) {
-  const d = pricingData[val];
-  const rc = reportConfigs[val];
-  const card = document.getElementById("price-card");
-  const wrap = document.getElementById("pricing-selector-final");
+function disableContextMenu() {
+  document.body.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+}
 
-  wrap.style.maxWidth = "100%";
-  card.style.maxWidth = "100%";
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
+      if (!targetId || targetId === "#") return;
 
-  document
-    .querySelectorAll(".cap-btn")
-    .forEach((b) => b.classList.remove("active"));
-  document.getElementById("btn-" + val).classList.add("active");
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
 
-  card.style.display = "block";
-  document.getElementById("target-title").innerText =
-    `[ ${d.title} ] 가격 할인 지원가`;
+      event.preventDefault();
 
-  // AI 리포트 영역 자동 계산 및 주입
+      const offsetPosition =
+        targetElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        HEADER_HEIGHT;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    });
+  });
+}
+
+function initRevealAnimations() {
+  const animatedElements = document.querySelectorAll(".animate-up");
+  if (!animatedElements.length) return;
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        entry.target.style.opacity = "1";
+        entry.target.classList.add("animate-up");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.1 },
+  );
+
+  animatedElements.forEach((element) => {
+    element.style.opacity = "0";
+    revealObserver.observe(element);
+  });
+}
+
+function initHeaderShadow() {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  const handleScroll = () => {
+    header.style.boxShadow =
+      window.scrollY > 20 ? "0 2px 10px rgba(0,0,0,0.1)" : "none";
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+}
+
+function buildVideoEmbed(videoId) {
+  return `
+    <iframe
+      src="${YOUTUBE_EMBED_BASE_URL}${videoId}?autoplay=1&rel=0"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      playsinline>
+    </iframe>
+  `;
+}
+
+function playVideo(element, videoId = "xUemVdPq_58") {
+  element.innerHTML = buildVideoEmbed(videoId);
+}
+
+function initVideoPlayers() {
+  document.querySelectorAll(".video-wrapper[data-youtube-id]").forEach((el) => {
+    el.addEventListener("click", () => {
+      playVideo(el, el.dataset.youtubeId);
+    });
+  });
+}
+
+function buildTickerItem(name, status, text) {
+  const item = document.createElement("div");
+  const isLive = status.toLowerCase() === "live";
+  const badgeClass = isLive ? "tag-live" : "tag-done";
+
+  item.className = "ticker-item";
+  item.innerHTML = `
+    <span class="shop-name">${name}</span>
+    <span class="status-badge ${badgeClass}">${
+      isLive ? '<span class="live-dot"></span>' : ""
+    }${text}</span>
+  `;
+
+  return item;
+}
+
+function renderTickerMessage(container, message) {
+  container.innerHTML = `<div class="ticker-item">${message}</div>`;
+}
+
+async function initTicker() {
+  const container = document.querySelector(".ticker-content");
+  if (!container) return;
+
+  if (window.location.protocol === "file:") {
+    renderTickerMessage(
+      container,
+      "실시간 현황은 브라우저 배포 환경에서 자동 연결됩니다.",
+    );
+    return;
+  }
+
+  try {
+    const response = await fetch(GOOGLE_SHEET_URL, {
+      mode: "cors",
+      redirect: "follow",
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const csvData = await response.text();
+    const rows = csvData.split(/\r?\n/).filter((row) => row.trim() !== "");
+    const fragment = document.createDocumentFragment();
+
+    rows.forEach((row) => {
+      const columns = row.split(",").map((column) => column.trim());
+      if (columns.length < 3) return;
+
+      const [name, status, text] = columns;
+      fragment.appendChild(buildTickerItem(name, status, text));
+    });
+
+    container.innerHTML = "";
+    container.appendChild(fragment.cloneNode(true));
+    container.appendChild(fragment);
+  } catch (error) {
+    console.error("데이터 로드 실패:", error);
+    renderTickerMessage(container, "실시간 현황 업데이트 중...");
+  }
+}
+
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.innerText = value;
+  }
+}
+
+function updateReportSummary(reportConfig, title) {
   const reportTitle = document.getElementById("ace-display-title");
-  if (reportTitle) {
-    reportTitle.innerText = `${d.title} 한 달 사용시`;
+  if (!reportTitle || !reportConfig) return;
 
-    const netProfit = rc.oldCost - rc.monthlyPay;
-    const yearlyProfit = netProfit * 12;
+  const netProfit = reportConfig.oldCost - reportConfig.monthlyPay;
+  const yearlyProfit = netProfit * 12;
 
-    document.getElementById("ace-old-cost").innerText =
-      rc.oldCost.toLocaleString() + " 원";
-    document.getElementById("ace-machine-cost").innerText =
-      rc.monthlyPay.toLocaleString() + " 원";
-    document.getElementById("ace-net-profit").innerText =
-      netProfit.toLocaleString() + " 원";
-    document.getElementById("ace-yearly-profit").innerText =
-      yearlyProfit.toLocaleString();
+  reportTitle.innerText = `${title} 한 달 사용시`;
+  setText("ace-old-cost", `${reportConfig.oldCost.toLocaleString()} 원`);
+  setText(
+    "ace-machine-cost",
+    `${reportConfig.monthlyPay.toLocaleString()} 원`,
+  );
+  setText("ace-net-profit", `${netProfit.toLocaleString()} 원`);
+  setText("ace-yearly-profit", yearlyProfit.toLocaleString());
+}
+
+function renderModelImage(wrapper, imagePath) {
+  if (!wrapper) return;
+
+  if (!imagePath) {
+    wrapper.style.display = "none";
+    return;
   }
 
-  // 이미지 섹션
-  const imgWrap = document.getElementById("model-img-wrap");
-  if (d.img) {
-    imgWrap.style.width = "100%";
-    imgWrap.style.height = "200px";
-    imgWrap.style.background = "#ffffff";
-    imgWrap.style.marginBottom = "20px";
-    imgWrap.style.borderRadius = "12px";
-    imgWrap.style.overflow = "hidden";
-    imgWrap.style.display = "flex";
-    imgWrap.style.alignItems = "center";
-    imgWrap.style.justifyContent = "center";
-    imgWrap.style.padding = "20px";
+  wrapper.style.width = "100%";
+  wrapper.style.height = "200px";
+  wrapper.style.background = "#ffffff";
+  wrapper.style.marginBottom = "20px";
+  wrapper.style.borderRadius = "12px";
+  wrapper.style.overflow = "hidden";
+  wrapper.style.display = "flex";
+  wrapper.style.alignItems = "center";
+  wrapper.style.justifyContent = "center";
+  wrapper.style.padding = "20px";
 
-    imgWrap.innerHTML = `
-            <picture style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-                <source srcset="${d.img}.webp" type="image/webp">
-                <img src="${d.img}.jpg" alt="제품 이미지"
-                    style="max-width:100%; max-height:100%; object-fit:contain; display:block; margin:0 auto;">
-            </picture>
-        `;
-  } else {
-    imgWrap.style.display = "none";
+  wrapper.innerHTML = `
+    <picture style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+      <source srcset="${imagePath}.webp" type="image/webp">
+      <img
+        src="${imagePath}.jpg"
+        alt="제품 이미지"
+        style="max-width:100%; max-height:100%; object-fit:contain; display:block; margin:0 auto;"
+      >
+    </picture>
+  `;
+}
+
+function renderRentalContent(rental) {
+  if (!rental) {
+    return '<p style="text-align:center; color:#64748b; font-size: clamp(calc(14px * 0.85), 5vw, 14px); margin:10px 0;">해당 모델 렌탈 서비스 없음</p>';
   }
 
-  // 데이터 주입
-  document.getElementById("old-buy").innerText = d.oldB + " 원";
-  document.getElementById("new-buy").innerText = d.newB + " 원";
-  document.getElementById("old-h48").innerText = d.h48o;
-  document.getElementById("new-h48").innerText = d.h48n + " 원";
-  document.getElementById("old-h36").innerText = d.h36o;
-  document.getElementById("new-h36").innerText = d.h36n + " 원";
+  return `
+    <div class="row"><span class="term">48개월</span><div class="price-group"><span class="old-price inline">${rental.r48o}</span><span class="new-price small">${rental.r48n} 원</span></div></div>
+    <div class="row dashed"><span class="term">36개월</span><div class="price-group"><span class="old-price inline">${rental.r36o}</span><span class="new-price small">${rental.r36n} 원</span></div></div>
+  `;
+}
 
-  const rCont = document.getElementById("rental-content");
-  if (d.rental) {
-    rCont.innerHTML = `
-            <div class="row"><span class="term">48개월</span><div class="price-group"><span class="old-price inline">${d.rental.r48o}</span><span class="new-price small">${d.rental.r48n} 원</span></div></div>
-            <div class="row dashed"><span class="term">36개월</span><div class="price-group"><span class="old-price inline">${d.rental.r36o}</span><span class="new-price small">${d.rental.r36n} 원</span></div></div>
-        `;
-  } else {
-    rCont.innerHTML = `<p style="text-align:center; color:#64748b; font-size: clamp(calc(14px * 0.85), 5vw, 14px); margin:10px 0;">해당 모델 렌탈 서비스 없음</p>`;
-  }
-
-  const saveText = document.getElementById("save-text");
-  const dailyText = document.getElementById("daily-text");
-
-  if (saveText) {
-    saveText.innerText = `월 ~${d.save} 원 절감`;
-  }
-
-  if (dailyText) {
-    dailyText.innerText = `하루 ${d.daily} 원`;
-  }
-
+function scrollToPriceCard(card) {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       const targetPosition =
@@ -375,17 +358,50 @@ function updatePrice(val) {
   });
 }
 
-window.updatePrice = updatePrice;
+function updatePrice(value) {
+  const pricing = pricingData[value];
+  const report = reportConfigs[value];
+  const card = document.getElementById("price-card");
+  const wrapper = document.getElementById("pricing-selector-final");
+  const rentalContent = document.getElementById("rental-content");
+
+  if (!pricing || !report || !card || !wrapper || !rentalContent) return;
+
+  wrapper.style.maxWidth = "100%";
+  card.style.maxWidth = "100%";
+
+  document.querySelectorAll(".cap-btn").forEach((button) => {
+    button.classList.remove("active");
+  });
+
+  document.getElementById(`btn-${value}`)?.classList.add("active");
+
+  card.style.display = "block";
+  setText("target-title", `[ ${pricing.title} ] 가격 할인 지원가`);
+
+  updateReportSummary(report, pricing.title);
+  renderModelImage(document.getElementById("model-img-wrap"), pricing.img);
+
+  setText("old-buy", `${pricing.oldB} 원`);
+  setText("new-buy", `${pricing.newB} 원`);
+  setText("old-h48", pricing.h48o);
+  setText("new-h48", `${pricing.h48n} 원`);
+  setText("old-h36", pricing.h36o);
+  setText("new-h36", `${pricing.h36n} 원`);
+  setText("save-text", `월 ~${pricing.save} 원 절감`);
+  setText("daily-text", `하루 ${pricing.daily} 원`);
+
+  rentalContent.innerHTML = renderRentalContent(pricing.rental);
+  scrollToPriceCard(card);
+}
 
 function initPricing() {
   const buttons = document.querySelectorAll(".cap-btn");
-
-  if (!buttons.length) {
-    return;
-  }
+  if (!buttons.length) return;
 
   buttons.forEach((button) => {
-    const capacity = button.dataset.capacity || button.id.replace("btn-", "").trim();
+    const capacity =
+      button.dataset.capacity || button.id.replace("btn-", "").trim();
 
     button.removeAttribute("onclick");
     button.addEventListener("click", () => {
@@ -394,37 +410,50 @@ function initPricing() {
   });
 }
 
-// 4. 스크롤 및 스티키바 제어
-document.addEventListener("DOMContentLoaded", () => {
-  initPricing();
-
+function initStickyBar() {
   const stickyBar = document.querySelector(".sticky-bar");
   const priceCard = document.getElementById("price-card");
+  if (!stickyBar || !priceCard) return;
 
-  if (stickyBar && priceCard) {
-    let isPriceCardVisible = false;
+  let isPriceCardVisible = false;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          isPriceCardVisible = entry.isIntersecting;
-          handleStickyBar();
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-    );
-    observer.observe(priceCard);
+  const handleStickyBar = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    const handleStickyBar = () => {
-      const scrollY = window.scrollY || window.pageYOffset;
-      if (scrollY > 100 && !isPriceCardVisible) {
-        stickyBar.classList.remove("is-hidden");
-      } else {
-        stickyBar.classList.add("is-hidden");
-      }
-    };
+    if (scrollY > 100 && !isPriceCardVisible) {
+      stickyBar.classList.remove("is-hidden");
+    } else {
+      stickyBar.classList.add("is-hidden");
+    }
+  };
 
-    window.addEventListener("scroll", handleStickyBar);
-    handleStickyBar();
-  }
-});
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        isPriceCardVisible = entry.isIntersecting;
+        handleStickyBar();
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+  );
+
+  observer.observe(priceCard);
+  window.addEventListener("scroll", handleStickyBar);
+  handleStickyBar();
+}
+
+function initApp() {
+  disableContextMenu();
+  initSmoothScroll();
+  initRevealAnimations();
+  initHeaderShadow();
+  initVideoPlayers();
+  initTicker();
+  initPricing();
+  initStickyBar();
+}
+
+window.playVideo = playVideo;
+window.updatePrice = updatePrice;
+
+document.addEventListener("DOMContentLoaded", initApp);
