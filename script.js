@@ -420,7 +420,7 @@ function initStickyBar() {
   const handleStickyBar = () => {
     const scrollY = window.scrollY || window.pageYOffset;
 
-    if (scrollY > 100 && !isPriceCardVisible) {
+    if (scrollY > 2000 && !isPriceCardVisible) {
       stickyBar.classList.remove("is-hidden");
     } else {
       stickyBar.classList.add("is-hidden");
