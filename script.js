@@ -298,10 +298,7 @@ function updateReportSummary(reportConfig, title) {
 
   reportTitle.innerText = `${title} 한 달 사용시`;
   setText("ace-old-cost", `${reportConfig.oldCost.toLocaleString()} 원`);
-  setText(
-    "ace-machine-cost",
-    `${reportConfig.monthlyPay.toLocaleString()} 원`,
-  );
+  setText("ace-machine-cost", `${reportConfig.monthlyPay.toLocaleString()} 원`);
   setText("ace-net-profit", `${netProfit.toLocaleString()} 원`);
   setText("ace-yearly-profit", yearlyProfit.toLocaleString());
 }
