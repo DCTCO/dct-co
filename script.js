@@ -5,12 +5,12 @@ const GOOGLE_SHEET_URL =
 
 const reportConfigs = {
   15: { oldCost: 75000, monthlyPay: 49000 },
-  20: { oldCost: 150000, monthlyPay: 74000 },
-  25: { oldCost: 225000, monthlyPay: 92740 },
-  30: { oldCost: 375000, monthlyPay: 223388 },
-  40: { oldCost: 562500, monthlyPay: 319133 },
-  50: { oldCost: 750000, monthlyPay: 408100 },
-  60: { oldCost: 937500, monthlyPay: 501623 },
+  20: { oldCost: 150000, monthlyPay: 89100 },
+  25: { oldCost: 225000, monthlyPay: 111100 },
+  30: { oldCost: 375000, monthlyPay: 232100 },
+  40: { oldCost: 562500, monthlyPay: 344300 },
+  50: { oldCost: 750000, monthlyPay: 423500 },
+  60: { oldCost: 937500, monthlyPay: 520300 },
 };
 
 const pricingData = {

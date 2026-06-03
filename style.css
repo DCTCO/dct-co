@@ -1119,7 +1119,7 @@ body {
 }
 
 .label {
-  color: #94a3b8;
+  color: white;
   font-weight: 700;
   font-size: var(--fs-15);
 }
